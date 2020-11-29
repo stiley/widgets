@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 const Search = () =>{
-    const [term, setTerm] = useState('programming');
-    const [debounceTerm,setDebounceTerm] = useState(term);
-    const [results, setResults] = useState([]);
+    const [ term, setTerm ] = useState('programming');
+    const [ debounceTerm,setDebounceTerm ] = useState(term);
+    const [ results, setResults ] = useState([]);
 
     // updates to debounce term
     useEffect(() =>{
@@ -14,7 +14,7 @@ const Search = () =>{
         return() =>{
             clearTimeout(timerID);
         }
-    },[term]);
+    },[ term ]);
 
     useEffect(() =>{
         const search = async () =>{
@@ -32,15 +32,15 @@ const Search = () =>{
         if(debounceTerm){
             search();
         }
-    },[debounceTerm]);
+    },[ debounceTerm ]);
 
     const renderedResults = results.map((result) => {
         return(
-            <div key={result.pageid} className="item">
+            <div key={ result.pageid } className="item">
                 <div className="right floated content">
                     <a
                         className="ui button"
-                        href={`https://en.wikipedia.org?curid=${result.pageid}`}
+                        href={ `https://en.wikipedia.org?curid=${ result.pageid }` }
                     >
                         Go
                     </a>
@@ -49,29 +49,29 @@ const Search = () =>{
                     <div className="header">
                         {result.title}
                     </div>
-                    <span dangerouslySetInnerHTML={{__html: result.snippet}}></span>
+                    <span dangerouslySetInnerHTML={ { __html: result.snippet } }></span>
                 </div>
             </div>
         );
     })
     return(
-    <div>
-           <div className="ui form">
-               <div className="field">
-                   <label>Enter Search Term</label>
-                   <input
+        <div>
+            <div className="ui form">
+                <div className="field">
+                    <label>Enter Search Term</label>
+                    <input
                        className="input"
-                       value={term}
+                       value={ term }
                        onChange={ (event) =>{
                             setTerm(event.target.value)
-                       }}
+                       } }
                    />
-               </div>
-           </div>
-            <div className="ui celled list">
-               {renderedResults}
+                </div>
             </div>
-       </div>
+            <div className="ui celled list">
+                {renderedResults}
+            </div>
+        </div>
     )
 }
 
