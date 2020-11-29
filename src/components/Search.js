@@ -3,7 +3,7 @@ import axios from 'axios';
 const Search = () =>{
     const [ term, setTerm ] = useState('programming');
     const [ debounceTerm,setDebounceTerm ] = useState(term);
-    const [ results, setResults ] = useState([]);
+    const [results,setResults] = useState([]);
 
     // updates to debounce term
     useEffect(() =>{
