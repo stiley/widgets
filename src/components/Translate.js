@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import DropDown from './DropDown';
+import Convert from './Convert';
+
+//const TRANSLATE_KEY='';
 
 const options = [
     {
@@ -16,7 +19,7 @@ const options = [
 
 ];
 
-const Translate = (props) => {
+const Translate = () => {
     const [ language, setLanguage ] = useState(options[ 0 ])
     const [ text, setText ] = useState('')
     return (
@@ -30,6 +33,9 @@ const Translate = (props) => {
                 </div>
             </div>
             <DropDown options={ options } selected={ language } onSelectedChanged={ setLanguage } label="Select a language"/>
+            <hr/>
+            <h3 className="ui header">Output:</h3>
+            <Convert language={ language } text={ text } />
         </div>
     );
 }
